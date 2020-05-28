@@ -267,7 +267,7 @@ static NSString *const kPresentationSize         = @"presentationSize";
     }
     if (@available(iOS 10.0, *)) {
         _playerItem.preferredForwardBufferDuration = 5;
-        _player.automaticallyWaitsToMinimizeStalling = NO;
+        _player.automaticallyWaitsToMinimizeStalling = YES;
     }
     [self itemObserving];
 }
