@@ -43,7 +43,7 @@ static NSString *kIdentifier = @"kIdentifier";
 //    ZFIJKPlayerManager *playerManager = [[ZFIJKPlayerManager alloc] init];
     
     /// player的tag值必须在cell里设置
-    self.player = [ZFPlayerController playerWithScrollView:self.tableView playerManager:playerManager containerViewTag:100];
+    self.player = [ZFPlayerController playerWithScrollView:self.tableView playerManager:playerManager containerViewTag:kPlayerViewTag];
     self.player.controlView = self.controlView;
     self.player.assetURLs = self.urls;
     self.player.shouldAutoPlay = NO;
@@ -163,7 +163,7 @@ static NSString *kIdentifier = @"kIdentifier";
     }
     /// 如果没有播放，则点击进详情页会自动播放
     if (!self.player.currentPlayerManager.isPlaying) {
-        [self playTheVideoAtIndexPath:indexPath scrollToTop:NO];
+        [self playTheVideoAtIndexPath:indexPath];
     }
     /// 到详情页
     ZFPlayerDetailViewController *detailVC = [ZFPlayerDetailViewController new];
@@ -194,14 +194,14 @@ static NSString *kIdentifier = @"kIdentifier";
 #pragma mark - ZFTableViewCellDelegate
 
 - (void)zf_playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
-    [self playTheVideoAtIndexPath:indexPath scrollToTop:NO];
+    [self playTheVideoAtIndexPath:indexPath];
 }
 
 #pragma mark - private method
 
 /// play the video
-- (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath scrollToTop:(BOOL)scrollToTop {
-    [self.player playTheIndexPath:indexPath scrollToTop:scrollToTop];
+- (void)playTheVideoAtIndexPath:(NSIndexPath *)indexPath {
+    [self.player playTheIndexPath:indexPath];
     ZFTableViewCellLayout *layout = self.dataSource[indexPath.row];
     [self.controlView showTitle:layout.data.title
                  coverURLString:layout.data.thumbnail_url
